@@ -5,137 +5,163 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Circular Economy and Sustainability Funders - USA</title>
 <!--
-  US Circular Economy & Sustainability Research â€” Funder Dashboard
-  Single-file static site. No build step, no external requests â€” GitHub Pages ready.
+  US Circular Economy & Sustainability Research — Funder Dashboard
+  Single-file static site. No build step, no external requests — GitHub Pages ready.
   Data is embedded below (FUNDERS). Aggregates are computed at runtime.
   NOTE: "papers" values are INDICATIVE relative-frequency estimates, not verified tallies.
 -->
 <style>
-  :root{
-    --plane:#f4f4f0; --surface:#fcfcfb; --surface-2:#ffffff;
-    --ink:#111310; --ink-2:#52514e; --muted:#898781;
-    --grid:#e6e5de; --line:#d7d6cd; --ring:rgba(17,19,16,0.10);
-    --accent:#0f7a5a; --accent-ink:#0a5d44;
-    /* categorical (funder type) â€” validated default slots, fixed order */
-    --t-federal:#2a78d6; --t-state:#1baf7a; --t-foundation:#eda100;
-    --t-university:#008300; --t-corporate:#4a3aa7; --t-ngo:#e34948;
+  :root {
+    --plane: #f4f4f0; --surface: #fcfcfb; --surface-2: #ffffff;
+    --ink: #111310; --ink-2: #52514e; --muted: #898781;
+    --grid: #e6e5de; --line: #d7d6cd; --ring: rgba(17,19,16,0.10);
+    --accent: #0f7a5a; --accent-ink: #0a5d44;
+    
+    /* categorical (funder type) — validated default slots, fixed order */
+    --t-federal: #2a78d6; --t-state: #1baf7a; --t-foundation: #eda100;
+    --t-university: #008300; --t-corporate: #4a3aa7; --t-ngo: #e34948;
+    
     /* topic */
-    --topic-ce:#eb6834; --topic-sus:#2a78d6; --topic-both:#4a3aa7;
-    --bar:#2a78d6;
-    --shadow:0 1px 2px rgba(17,19,16,.05),0 8px 24px -12px rgba(17,19,16,.12);
-    --radius:14px;
+    --topic-ce: #eb6834; --topic-sus: #2a78d6; --topic-both: #4a3aa7;
+    --bar: #2a78d6;
+    --shadow: 0 1px 2px rgba(17,19,16,.05), 0 8px 24px -12px rgba(17,19,16,.12);
+    --radius: 14px;
   }
-  @media (prefers-color-scheme:dark){
-    :root{
-      --plane:#0d0d0c; --surface:#1a1a19; --surface-2:#212120;
-      --ink:#f4f3ee; --ink-2:#c3c2b7; --muted:#8f8e86;
-      --grid:#2c2c2a; --line:#3a3a37; --ring:rgba(255,255,255,0.10);
-      --accent:#33c497; --accent-ink:#6fd7b5;
-      --t-federal:#3987e5; --t-state:#199e70; --t-foundation:#c98500;
-      --t-university:#37a337; --t-corporate:#9085e9; --t-ngo:#e66767;
-      --topic-ce:#d95926; --topic-sus:#3987e5; --topic-both:#9085e9;
-      --bar:#3987e5;
-      --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7);
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --plane: #0d0d0c; --surface: #1a1a19; --surface-2: #212120;
+      --ink: #f4f3ee; --ink-2: #c3c2b7; --muted: #8f8e86;
+      --grid: #2c2c2a; --line: #3a3a37; --ring: rgba(255,255,255,0.10);
+      --accent: #33c497; --accent-ink: #6fd7b5;
+      --t-federal: #3987e5; --t-state: #199e70; --t-foundation: #c98500;
+      --t-university: #37a337; --t-corporate: #9085e9; --t-ngo: #e66767;
+      --topic-ce: #d95926; --topic-sus: #3987e5; --topic-both: #9085e9;
+      --bar: #3987e5;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
     }
   }
-  :root[data-theme="dark"]{
-    --plane:#0d0d0c; --surface:#1a1a19; --surface-2:#212120;
-    --ink:#f4f3ee; --ink-2:#c3c2b7; --muted:#8f8e86;
-    --grid:#2c2c2a; --line:#3a3a37; --ring:rgba(255,255,255,0.10);
-    --accent:#33c497; --accent-ink:#6fd7b5;
-    --t-federal:#3987e5; --t-state:#199e70; --t-foundation:#c98500;
-    --t-university:#37a337; --t-corporate:#9085e9; --t-ngo:#e66767;
-    --topic-ce:#d95926; --topic-sus:#3987e5; --topic-both:#9085e9; --bar:#3987e5;
+  :root[data-theme="dark"] {
+    --plane: #0d0d0c; --surface: #1a1a19; --surface-2: #212120;
+    --ink: #f4f3ee; --ink-2: #c3c2b7; --muted: #8f8e86;
+    --grid: #2c2c2a; --line: #3a3a37; --ring: rgba(255,255,255,0.10);
+    --accent: #33c497; --accent-ink: #6fd7b5;
+    --t-federal: #3987e5; --t-state: #199e70; --t-foundation: #c98500;
+    --t-university: #37a337; --t-corporate: #9085e9; --t-ngo: #e66767;
+    --topic-ce: #d95926; --topic-sus: #3987e5; --topic-both: #9085e9; --bar: #3987e5;
   }
-  :root[data-theme="light"]{
-    --plane:#f4f4f0; --surface:#fcfcfb; --surface-2:#ffffff;
-    --ink:#111310; --ink-2:#52514e; --muted:#898781;
-    --grid:#e6e5de; --line:#d7d6cd; --ring:rgba(17,19,16,0.10);
-    --accent:#0f7a5a; --accent-ink:#0a5d44;
-    --t-federal:#2a78d6; --t-state:#1baf7a; --t-foundation:#eda100;
-    --t-university:#008300; --t-corporate:#4a3aa7; --t-ngo:#e34948;
-    --topic-ce:#eb6834; --topic-sus:#2a78d6; --topic-both:#4a3aa7; --bar:#2a78d6;
+  :root[data-theme="light"] {
+    --plane: #f4f4f0; --surface: #fcfcfb; --surface-2: #ffffff;
+    --ink: #111310; --ink-2: #52514e; --muted: #898781;
+    --grid: #e6e5de; --line: #d7d6cd; --ring: rgba(17,19,16,0.10);
+    --accent: #0f7a5a; --accent-ink: #0a5d44;
+    --t-federal: #2a78d6; --t-state: #1baf7a; --t-foundation: #eda100;
+    --t-university: #008300; --t-corporate: #4a3aa7; --t-ngo: #e34948;
+    --topic-ce: #eb6834; --topic-sus: #2a78d6; --topic-both: #4a3aa7; --bar: #2a78d6;
   }
 
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--plane);color:var(--ink);
-    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5;
-    -webkit-font-smoothing:antialiased;}
-  .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 72px;}
-  a{color:var(--accent-ink);text-decoration:none;}
-  a:hover{text-decoration:underline;}
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--plane); color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 28px 20px 72px; }
+  a { color: var(--accent-ink); text-decoration: none; }
+  a:hover { text-decoration: underline; }
 
-  header.top{display:flex;flex-wrap:wrap;gap:18px 24px;align-items:flex-end;
-    justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:22px;}
-  .eyebrow{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--accent-ink);font-weight:650;}
-  h1{font-size:clamp(24px,4.2vw,36px);line-height:1.08;margin:.28em 0 .18em;
-    letter-spacing:-.02em;text-wrap:balance;font-weight:720;max-width:22ch;}
-  .sub{color:var(--ink-2);font-size:14.5px;max-width:60ch;}
-  .theme-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink-2);
-    border-radius:999px;padding:8px 14px;font-size:12.5px;font-weight:600;cursor:pointer;
-    display:inline-flex;gap:7px;align-items:center;}
-  .theme-btn:hover{border-color:var(--muted);}
+  header.top {
+    display: flex; flex-wrap: wrap; gap: 18px 24px; align-items: flex-end;
+    justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 22px;
+  }
+  .eyebrow { font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-ink); font-weight: 650; }
+  h1 {
+    font-size: clamp(24px, 4.2vw, 36px); line-height: 1.08; margin: .28em 0 .18em;
+    letter-spacing: -.02em; text-wrap: balance; font-weight: 720; max-width: 22ch;
+  }
+  .sub { color: var(--ink-2); font-size: 14.5px; max-width: 60ch; }
+  .theme-btn {
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink-2);
+    border-radius: 999px; padding: 8px 14px; font-size: 12.5px; font-weight: 600; cursor: pointer;
+    display: inline-flex; gap: 7px; align-items: center; user-select: none; transition: background 0.15s, border-color 0.15s;
+  }
+  .theme-btn:hover { border-color: var(--muted); background: var(--surface-2); }
 
-  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 8px;}
-  @media(max-width:720px){.kpis{grid-template-columns:repeat(2,1fr);}}
-  .kpi{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);
-    padding:16px 16px 14px;box-shadow:var(--shadow);}
-  .kpi .v{font-size:30px;font-weight:730;letter-spacing:-.02em;line-height:1;}
-  .kpi .l{font-size:12px;color:var(--ink-2);margin-top:8px;}
-  .kpi .h{font-size:11px;color:var(--muted);margin-top:2px;}
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 26px 0 8px; }
+  @media(max-width: 720px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
+  .kpi {
+    background: var(--surface); border: 1px solid var(--ring); border-radius: var(--radius);
+    padding: 16px 16px 14px; box-shadow: var(--shadow);
+  }
+  .kpi .v { font-size: 30px; font-weight: 730; letter-spacing: -.02em; line-height: 1; }
+  .kpi .l { font-size: 12px; color: var(--ink-2); margin-top: 8px; font-weight: 550; }
+  .kpi .h { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
-  section.panel{background:var(--surface);border:1px solid var(--ring);border-radius:var(--radius);
-    padding:18px 20px 20px;box-shadow:var(--shadow);margin-top:16px;}
-  .panel h2{font-size:14px;font-weight:680;margin:0 0 2px;letter-spacing:-.01em;}
-  .panel .cap{font-size:12px;color:var(--muted);margin:0 0 14px;}
+  section.panel {
+    background: var(--surface); border: 1px solid var(--ring); border-radius: var(--radius);
+    padding: 18px 20px 20px; box-shadow: var(--shadow); margin-top: 16px;
+  }
+  .panel h2 { font-size: 14px; font-weight: 680; margin: 0 0 2px; letter-spacing: -.01em; text-transform: uppercase; color: var(--ink-2); }
+  .panel .cap { font-size: 12px; color: var(--muted); margin: 0 0 14px; }
 
-  .charts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
-  @media(max-width:840px){.charts{grid-template-columns:1fr;}}
+  .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  @media(max-width: 840px) { .charts { grid-template-columns: 1fr; } }
 
   /* horizontal bars */
-  .rows{display:flex;flex-direction:column;gap:9px;}
-  .row{display:grid;grid-template-columns:132px 1fr 42px;gap:10px;align-items:center;font-size:12.5px;}
-  .row .name{color:var(--ink-2);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .track{background:var(--grid);border-radius:5px;height:16px;position:relative;overflow:hidden;}
-  .fill{height:100%;border-radius:5px;transition:filter .12s;}
-  .fill:hover{filter:brightness(1.08);}
-  .row .val{font-variant-numeric:tabular-nums;font-weight:640;text-align:right;color:var(--ink);}
-  .legend{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:14px;font-size:12px;color:var(--ink-2);}
-  .legend span{display:inline-flex;gap:6px;align-items:center;}
-  .swatch{width:11px;height:11px;border-radius:3px;display:inline-block;box-shadow:0 0 0 1px var(--ring) inset;}
+  .rows { display: flex; flex-direction: column; gap: 9px; }
+  .row { display: grid; grid-template-columns: 140px 1fr 42px; gap: 12px; align-items: center; font-size: 12.5px; }
+  .row .name { color: var(--ink-2); text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 500; }
+  .track { background: var(--grid); border-radius: 5px; height: 16px; position: relative; overflow: hidden; }
+  .fill { height: 100%; border-radius: 5px; transition: width 0.4s ease-out, filter .12s; }
+  .fill:hover { filter: brightness(1.08); cursor: pointer; }
+  .row .val { font-variant-numeric: tabular-nums; font-weight: 640; text-align: right; color: var(--ink); }
+  
+  .legend { display: flex; flex-wrap: wrap; gap: 10px 16px; margin-top: 14px; font-size: 12px; color: var(--ink-2); }
+  .legend span { display: inline-flex; gap: 6px; align-items: center; }
+  .swatch { width: 11px; height: 11px; border-radius: 3px; display: inline-block; box-shadow: 0 0 0 1px var(--ring) inset; }
 
   /* controls */
-  .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px;}
-  .controls input[type=search]{flex:1 1 240px;min-width:180px;background:var(--surface-2);
-    border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-size:13.5px;color:var(--ink);}
-  .controls select{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;
-    padding:9px 12px;font-size:13px;color:var(--ink);}
-  input[type=search]:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px;}
-  .count{font-size:12.5px;color:var(--muted);margin-left:auto;}
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 14px; }
+  .controls input[type=search] {
+    flex: 1 1 240px; min-width: 180px; background: var(--surface-2);
+    border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; font-size: 13.5px; color: var(--ink);
+  }
+  .controls select {
+    background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px;
+    padding: 9px 12px; font-size: 13px; color: var(--ink); cursor: pointer;
+  }
+  input[type=search]:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .count { font-size: 12.5px; color: var(--muted); margin-left: auto; font-weight: 550; }
 
   /* table */
-  .tablewrap{overflow-x:auto;border:1px solid var(--ring);border-radius:12px;}
-  table{border-collapse:collapse;width:100%;font-size:13px;min-width:760px;}
-  thead th{position:sticky;top:0;background:var(--surface-2);text-align:left;
-    padding:11px 12px;font-weight:640;color:var(--ink-2);font-size:12px;
-    border-bottom:1px solid var(--line);cursor:pointer;white-space:nowrap;user-select:none;}
-  thead th:hover{color:var(--ink);}
-  thead th .arrow{color:var(--muted);font-size:10px;}
-  tbody td{padding:10px 12px;border-bottom:1px solid var(--grid);vertical-align:top;}
-  tbody tr:hover{background:color-mix(in srgb,var(--accent) 6%,transparent);}
-  td.num{font-variant-numeric:tabular-nums;text-align:right;font-weight:620;white-space:nowrap;}
-  .pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:620;
-    color:#fff;white-space:nowrap;}
-  .fname{font-weight:600;color:var(--ink);}
-  .fsub{color:var(--muted);font-size:11.5px;margin-top:2px;}
-  .topic{font-size:11px;color:var(--ink-2);white-space:nowrap;}
-  .dot{width:8px;height:8px;border-radius:2px;display:inline-block;margin-right:5px;vertical-align:middle;}
+  .tablewrap { overflow-x: auto; border: 1px solid var(--ring); border-radius: 12px; background: var(--surface-2); }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; min-width: 760px; }
+  thead th {
+    position: sticky; top: 0; background: var(--surface-2); text-align: left;
+    padding: 11px 12px; font-weight: 640; color: var(--ink-2); font-size: 12px;
+    border-bottom: 1px solid var(--line); cursor: pointer; white-space: nowrap; user-select: none;
+    transition: background 0.15s, color 0.15s;
+  }
+  thead th:hover { color: var(--ink); background: var(--plane); }
+  thead th .arrow { color: var(--muted); font-size: 10px; margin-left: 4px; }
+  tbody td { padding: 10px 12px; border-bottom: 1px solid var(--grid); vertical-align: middle; }
+  tbody tr:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+  td.num { font-variant-numeric: tabular-nums; text-align: right; font-weight: 620; white-space: nowrap; }
+  
+  .pill {
+    display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 11px; font-weight: 620;
+    color: #fff; white-space: nowrap; text-shadow: 0 1px 1px rgba(0,0,0,0.15);
+  }
+  .fname { font-weight: 600; color: var(--ink); }
+  .fsub { color: var(--muted); font-size: 11.5px; margin-top: 2px; }
+  .topic { font-size: 11.5px; color: var(--ink-2); white-space: nowrap; display: inline-flex; align-items: center; }
+  .dot { width: 8px; height: 8px; border-radius: 2px; display: inline-block; margin-right: 6px; }
 
-  footer{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);
-    font-size:12px;color:var(--muted);line-height:1.65;}
-  .flag{color:var(--topic-ce);font-weight:600;}
-  code{background:var(--surface-2);border:1px solid var(--ring);border-radius:5px;padding:1px 5px;font-size:12px;}
+  footer {
+    margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--line);
+    font-size: 12px; color: var(--muted); line-height: 1.65;
+  }
+  .flag { color: var(--topic-ce); font-weight: 600; }
+  code { background: var(--surface-2); border: 1px solid var(--ring); border-radius: 5px; padding: 1px 5px; font-size: 12px; }
 </style>
 </head>
 <body>
@@ -143,13 +169,13 @@
 <div class="wrap">
   <header class="top">
     <div>
-      <div class="eyebrow">Research Funding Landscape Â· USA Â· 2021â€“2026</div>
+      <div class="eyebrow">Research Funding Landscape · USA · 2021–2026</div>
       <h1>Circular Economy &amp; Sustainability Funders</h1>
       <p class="sub">100 unique organizations funding US-based research across circular economy,
         LCA, closed-loop supply chains, industrial ecology, resource recovery, sustainable
         materials &amp; manufacturing, and EPR.</p>
     </div>
-    <button class="theme-btn" id="themeBtn" aria-label="Toggle color theme">â— Theme</button>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle color theme">◑ Theme</button>
   </header>
 
   <div class="kpis" id="kpis"></div>
@@ -157,21 +183,21 @@
   <div class="charts">
     <section class="panel">
       <h2>Funders by type</h2>
-      <p class="cap">Deliberately not federal-dominated â€” 78% are non-federal.</p>
+      <p class="cap">Deliberately not federal-dominated — 78% are non-federal.</p>
       <div class="rows" id="typeChart"></div>
       <div class="legend" id="typeLegend"></div>
     </section>
 
     <section class="panel">
       <h2>Primary topical association</h2>
-      <p class="cap">CE = circular-economy core Â· Both = strong portfolio in each.</p>
+      <p class="cap">CE = circular-economy core · Both = strong portfolio in each.</p>
       <div class="rows" id="topicChart"></div>
     </section>
   </div>
 
   <section class="panel">
     <h2>Top 10 funders by indicative paper frequency</h2>
-    <p class="cap">Relative-frequency estimates (not verified tallies) â€” shows how a few federal
+    <p class="cap">Relative-frequency estimates (not verified tallies) — shows how a few federal
       agencies co-fund most US work in this space.</p>
     <div class="rows" id="topChart"></div>
   </section>
@@ -180,7 +206,7 @@
     <h2>All 100 funders</h2>
     <p class="cap">Search, filter, and sort. Click a column header to sort.</p>
     <div class="controls">
-      <input type="search" id="search" placeholder="Search funder, subfield, noteâ€¦" aria-label="Search funders">
+      <input type="search" id="search" placeholder="Search funder, subfield, note…" aria-label="Search funders">
       <select id="typeFilter" aria-label="Filter by type"><option value="">All types</option></select>
       <select id="topicFilter" aria-label="Filter by topic">
         <option value="">All topics</option>
@@ -192,14 +218,16 @@
     </div>
     <div class="tablewrap">
       <table>
-        <thead><tr>
-          <th data-k="name">Funder <span class="arrow"></span></th>
-          <th data-k="type">Type <span class="arrow"></span></th>
-          <th data-k="topic">Topic <span class="arrow"></span></th>
-          <th data-k="papers" style="text-align:right">Papers <span class="arrow">â–¼</span></th>
-          <th data-k="subfields">Subfields</th>
-          <th>Site</th>
-        </tr></thead>
+        <thead>
+          <tr>
+            <th data-k="name">Funder <span class="arrow"></span></th>
+            <th data-k="type">Type <span class="arrow"></span></th>
+            <th data-k="topic">Topic <span class="arrow"></span></th>
+            <th data-k="papers" style="text-align:right">Papers <span class="arrow">▼</span></th>
+            <th data-k="subfields">Subfields</th>
+            <th>Site</th>
+          </tr>
+        </thead>
         <tbody id="tbody"></tbody>
       </table>
     </div>
@@ -208,43 +236,43 @@
   <footer>
     <strong>Methodology &amp; limitations.</strong> Compiled from the established US
     circular-economy / sustainability funding ecosystem, grounded by web searches across
-    Google&nbsp;Scholar / ScienceDirect / MDPI / arXiv / agency repositories, with non-obvious
+    Google Scholar / ScienceDirect / MDPI / arXiv / agency repositories, with non-obvious
     foundation URLs verified directly. <span class="flag">Paper counts are indicative
-    relative-frequency estimates, not a verified full-text tally</span> â€” paywalled acknowledgment
+    relative-frequency estimates, not a verified full-text tally</span> — paywalled acknowledgment
     sections are not retrievable at scale. Sub-agencies are deduplicated to the parent
-    (e.g. all NSF directorates â†’ NSF); ARPA-E, NIFA, ONR/ARO/AFOSR/DARPA and national-lab LDRD are
-    listed distinctly because they issue their own awards. "USA-based research" = â‰¥1 US
+    (e.g. all NSF directorates → NSF); ARPA-E, NIFA, ONR/ARO/AFOSR/DARPA and national-lab LDRD are
+    listed distinctly because they issue their own awards. "USA-based research" = ≥1 US
     author/institution <em>or</em> a US-based funder. Flagged: Ellen MacArthur &amp; BASF
     (international HQ, US-active), USAID (agency reorganized 2025), Kendeda (spending down).
     Data file: <code>circular_economy_funders_100.csv</code>.
   </footer>
 </div>
 
-<div id="tt" role="tooltip" style="position:fixed;pointer-events:none;opacity:0;transition:opacity .1s;
-  background:var(--ink);color:var(--plane);padding:6px 10px;border-radius:8px;font-size:12px;
-  font-family:system-ui,sans-serif;box-shadow:var(--shadow);z-index:50;max-width:260px;"></div>
+<div id="tt" role="tooltip" style="position:fixed;pointer-events:none;opacity:0;transition:opacity .12s;
+  background:var(--ink);color:var(--plane);padding:10px 14px;border-radius:8px;font-size:12.5px;
+  font-family:system-ui,sans-serif;box-shadow:var(--shadow);z-index:50;max-width:280px;line-height:1.45;border:1px solid rgba(255,255,255,0.15);"></div>
 
 <script>
 /* ---- DATA (embedded) ------------------------------------------------------ */
 const TYPES = {
-  Federal:{label:"Federal Agency",v:"--t-federal"},
-  State:{label:"State Agency",v:"--t-state"},
-  Foundation:{label:"Private Foundation",v:"--t-foundation"},
-  University:{label:"University-Internal",v:"--t-university"},
-  Corporate:{label:"Corporate",v:"--t-corporate"},
-  NGO:{label:"NGO",v:"--t-ngo"},
+  Federal: {label:"Federal Agency", v:"--t-federal"},
+  State: {label:"State Agency", v:"--t-state"},
+  Foundation: {label:"Private Foundation", v:"--t-foundation"},
+  University: {label:"University-Internal", v:"--t-university"},
+  Corporate: {label:"Corporate", v:"--t-corporate"},
+  NGO: {label:"NGO", v:"--t-ngo"},
 };
-const TOPICV = {CE:"--topic-ce",Sustainability:"--topic-sus",Both:"--topic-both"};
+const TOPICV = {CE:"--topic-ce", Sustainability:"--topic-sus", Both:"--topic-both"};
 const F = (name,type,topic,papers,url,subfields,note)=>({name,type,topic,papers,url,subfields,note});
 const FUNDERS = [
- F("Advanced Research Projects Agencyâ€“Energy (ARPA-E)","Federal","Both",18,"https://arpa-e.energy.gov","Energy; sustainable materials; resource recovery","Distinct funding office within DOE."),
+ F("Advanced Research Projects Agency–Energy (ARPA-E)","Federal","Both",18,"https://arpa-e.energy.gov","Energy; sustainable materials; resource recovery","Distinct funding office within DOE."),
  F("Air Force Office of Scientific Research (AFOSR)","Federal","Sustainability",7,"https://www.afrl.af.mil/AFOSR/","Sustainable materials; industrial ecology","Basic-research arm of AFRL."),
  F("Alcoa Foundation","Foundation","CE",4,"https://www.alcoa.com/foundation","Resource recovery; circular economy","Corporate-linked 501(c)(3)."),
- F("Alfred P. Sloan Foundation","Foundation","Sustainability",9,"https://sloan.org","Sustainability; energy; corporate sustainability","Energy/environment + economics programs."),
+ F("Alfred P. Sloan Foundation","Foundation","Sustainability",9,"https://sloan.org","Sustainability; energy; corporate sustainability","Energy/environment + economics programs program."),
  F("Amazon (Climate Pledge Fund / Sustainability)","Corporate","CE",6,"https://sustainability.aboutamazon.com","Closed-loop supply chain; corporate sustainability","Corporate arm + venture fund."),
  F("Apple Inc.","Corporate","CE",4,"https://www.apple.com/environment/","Sustainable materials; resource recovery","Recycled-materials / rare-earth recovery."),
  F("Argonne National Laboratory (LDRD)","Federal","Both",8,"https://www.anl.gov","LCA; resource recovery; energy","DOE lab; home of GREET LCA model."),
- F("Arizona State University â€“ Global Futures Lab","University","Sustainability",6,"https://globalfutures.asu.edu","Urban planning; sustainability; industrial ecology","Wrigley Global Futures internal seed funding."),
+ F("Arizona State University – Global Futures Lab","University","Sustainability",6,"https://globalfutures.asu.edu","Urban planning; sustainability; industrial ecology","Wrigley Global Futures internal seed funding."),
  F("Army Research Office (ARO)","Federal","Sustainability",7,"https://www.arl.army.mil/who-we-are/aro/","Sustainable materials; manufacturing","Extramural funder within DEVCOM ARL."),
  F("BASF Corporation","Corporate","CE",4,"https://www.basf.com","Sustainable manufacturing; resource recovery","German parent; funds US research."),
  F("Bezos Earth Fund","Foundation","Sustainability",5,"https://www.bezosearthfund.org","Sustainability; sustainable development","Large climate grantmaker (2020)."),
@@ -253,7 +281,7 @@ const FUNDERS = [
  F("California Energy Commission (CEC)","State","Sustainability",8,"https://www.energy.ca.gov","Energy; sustainable manufacturing","Major state R&D funder (EPIC)."),
  F("CalRecycle","State","CE",7,"https://calrecycle.ca.gov","Waste management; EPR","Key state EPR / recycling funder."),
  F("Cargill Inc.","Corporate","Sustainability",3,"https://www.cargill.com","Food systems; sustainable materials","Corporate food/ag research."),
- F("Carnegie Mellon â€“ Scott Institute for Energy Innovation","University","Sustainability",5,"https://www.cmu.edu/energy/","Energy; industrial ecology","Wilton E. Scott Institute seed grants."),
+ F("Carnegie Mellon – Scott Institute for Energy Innovation","University","Sustainability",5,"https://www.cmu.edu/energy/","Energy; industrial ecology","Wilton E. Scott Institute seed grants."),
  F("Chevron (Technology Ventures)","Corporate","Both",3,"https://www.chevron.com","Resource recovery; energy","Corporate research + venture arm."),
  F("ClimateWorks Foundation","Foundation","Both",4,"https://www.climateworks.org","Sustainability; circular economy","Regranting intermediary."),
  F("Closed Loop Partners / Closed Loop Foundation","NGO","CE",9,"https://www.closedlooppartners.com/impact/closed-loop-foundation/","Circular economy; waste management; resource recovery","URL verified. Core circular-economy funder."),
@@ -267,7 +295,7 @@ const FUNDERS = [
  F("Doris Duke Foundation","Foundation","Sustainability",4,"https://www.dorisduke.org","Sustainability; sustainable development","Environment program."),
  F("Dow Inc.","Corporate","CE",4,"https://www.dow.com","Sustainable materials; resource recovery","Major corporate materials funder."),
  F("Eastman Chemical Company","Corporate","CE",3,"https://www.eastman.com","Resource recovery; sustainable manufacturing","Molecular-recycling research."),
- F("Ellen MacArthur Foundation","NGO","CE",8,"https://www.ellenmacarthurfoundation.org","Circular economy; industrial ecology","UK-based â€” co-funds US networks."),
+ F("Ellen MacArthur Foundation","NGO","CE",8,"https://www.ellenmacarthurfoundation.org","Circular economy; industrial ecology","UK-based — co-funds US networks."),
  F("The Energy Foundation","Foundation","Sustainability",3,"https://energyfoundation.org","Energy; sustainability","US regranting foundation."),
  F("Environmental Defense Fund (EDF)","NGO","Sustainability",4,"https://www.edf.org","Corporate sustainability; sustainability","Funds + co-produces applied research."),
  F("ExxonMobil","Corporate","CE",3,"https://corporate.exxonmobil.com","Resource recovery; sustainable manufacturing","University research agreements."),
@@ -280,12 +308,12 @@ const FUNDERS = [
  F("The Grantham Foundation for the Protection of the Environment","Foundation","Sustainability",4,"https://www.granthamfoundation.org","Sustainability; sustainable materials","Also funds climate-tech."),
  F("Great Lakes Protection Fund","Foundation","Both",3,"https://glpf.org","Resource recovery; sustainability","URL verified. Impact-investing endowment."),
  F("Heising-Simons Foundation","Foundation","Sustainability",4,"https://www.hsfoundation.org","Energy; sustainability","Climate/energy program."),
- F("Herbert H. and Grace A. Dow Foundation","Foundation","Sustainability",2,"https://www.hhdowfoundation.org","Sustainability; sustainable materials","Michigan-based; â‰  Dow Inc."),
+ F("Herbert H. and Grace A. Dow Foundation","Foundation","Sustainability",2,"https://www.hhdowfoundation.org","Sustainability; sustainable materials","Michigan-based; ≠ Dow Inc."),
  F("IBM (Research)","Corporate","Both",3,"https://research.ibm.com","Sustainable materials; LCA","Research collaborations."),
  F("Illinois Sustainable Technology Center (ISTC)","State","CE",4,"https://istc.illinois.edu","Resource recovery; industrial ecology; waste","State/university hybrid."),
  F("John D. and Catherine T. MacArthur Foundation","Foundation","Sustainability",4,"https://www.macfound.org","Sustainability; sustainable development","Climate Solutions program."),
  F("The Joyce Foundation","Foundation","Sustainability",3,"https://www.joycefdn.org","Sustainability; energy","Great Lakes / clean energy."),
- F("The Kendeda Fund","Foundation","Sustainability",3,"https://kendedafund.org","Sustainable materials; urban planning","URL verified. Spending down â€” currency flag."),
+ F("The Kendeda Fund","Foundation","Sustainability",3,"https://kendedafund.org","Sustainable materials; urban planning","URL verified. Spending down — currency flag."),
  F("The Kresge Foundation","Foundation","Sustainability",4,"https://kresge.org","Urban planning; sustainable development","Urban climate resilience."),
  F("Massachusetts Clean Energy Center (MassCEC)","State","Sustainability",4,"https://www.masscec.com","Energy; sustainable manufacturing","State clean-energy agency."),
  F("Michigan Dept. of Environment, Great Lakes & Energy (EGLE)","State","CE",5,"https://www.michigan.gov/egle","Waste management; resource recovery","Active recycling/EPR grants."),
@@ -312,7 +340,7 @@ const FUNDERS = [
  F("PepsiCo","Corporate","Both",3,"https://www.pepsico.com/our-impact/sustainability","Food systems; circular economy","Regen ag + packaging."),
  F("The Pew Charitable Trusts","Foundation","Sustainability",5,"https://www.pewtrusts.org","Waste management; sustainability","Marine/plastics + environment."),
  F("Pennsylvania Department of Environmental Protection (PA DEP)","State","CE",3,"https://www.dep.pa.gov","Waste management; recycling","Act 101 recycling grants."),
- F("Princeton â€“ Andlinger Center for Energy & the Environment","University","Sustainability",5,"https://acee.princeton.edu","Energy; industrial ecology","Innovation/seed funding."),
+ F("Princeton – Andlinger Center for Energy & the Environment","University","Sustainability",5,"https://acee.princeton.edu","Energy; industrial ecology","Innovation/seed funding."),
  F("Procter & Gamble","Corporate","CE",3,"https://us.pg.com","Sustainable materials; circular economy","Packaging research."),
  F("Resources for the Future (RFF)","NGO","Both",4,"https://www.rff.org","EPR; sustainability","Environmental-economics institute."),
  F("Rocky Mountain Institute (RMI)","NGO","Sustainability",4,"https://rmi.org","Energy; industrial ecology; urban planning","Applied-research NGO."),
@@ -322,7 +350,7 @@ const FUNDERS = [
  F("Texas Commission on Environmental Quality (TCEQ)","State","CE",3,"https://www.tceq.texas.gov","Waste management; resource recovery","State agency."),
  F("3M Company","Corporate","CE",3,"https://www.3m.com","Sustainable materials; manufacturing","Research + 3M Gives."),
  F("Toyota Research Institute / Toyota Mobility Foundation","Corporate","CE",3,"https://www.tri.global","Sustainable materials; resource recovery","Research institute + foundation."),
- F("U.S. Agency for International Development (USAID)","Federal","Sustainability",4,"https://www.usaid.gov","Sustainable development; waste management","Reorganized 2025 â€” currency flag."),
+ F("U.S. Agency for International Development (USAID)","Federal","Sustainability",4,"https://www.usaid.gov","Sustainable development; waste management","Reorganized 2025 — currency flag."),
  F("U.S. Department of Agriculture (USDA / NIFA)","Federal","Both",26,"https://www.nifa.usda.gov","Food systems; sustainable materials; resource recovery","USDA-NIFA/ARS merged."),
  F("U.S. Department of Defense (DoD)","Federal","Sustainability",10,"https://www.defense.gov","Sustainable materials; energy (SERDP/ESTCP)","SERDP/ESTCP + service labs."),
  F("U.S. Department of Energy (DOE)","Federal","Both",71,"https://www.energy.gov","Energy; sustainable manufacturing; circular economy; LCA","GROUNDED: DOE Better Plants study (Sustainability 2024). EERE/IEDO/AMO/BER merged."),
@@ -330,8 +358,8 @@ const FUNDERS = [
  F("U.S. Department of Transportation (DOT)","Federal","CE",6,"https://www.transportation.gov","Sustainable materials; resource recovery","FHWA + University Transportation Centers."),
  F("U.S. Environmental Protection Agency (EPA)","Federal","Both",44,"https://www.epa.gov","Waste management; LCA; resource recovery; EPR","GROUNDED: EPA/600 SMM report. STAR/ORD/SMM merged."),
  F("U.S. Geological Survey (USGS)","Federal","CE",4,"https://www.usgs.gov","Resource recovery; industrial ecology","Critical-minerals / material-flow data."),
- F("University of Michigan â€“ Graham Sustainability Institute","University","Sustainability",5,"https://graham.umich.edu","Urban planning; sustainability; industrial ecology","Catalyst/seed grants."),
- F("University of Pittsburgh â€“ Mascaro Center for Sustainable Innovation","University","CE",4,"https://www.engineering.pitt.edu/mcsi/","Circular economy; urban planning; LCA","Tied to NSF Convergence work."),
+ F("University of Michigan – Graham Sustainability Institute","University","Sustainability",5,"https://graham.umich.edu","Urban planning; sustainability; industrial ecology","Catalyst/seed grants."),
+ F("University of Pittsburgh – Mascaro Center for Sustainable Innovation","University","CE",4,"https://www.engineering.pitt.edu/mcsi/","Circular economy; urban planning; LCA","Tied to NSF Convergence work."),
  F("V. Kann Rasmussen Foundation","Foundation","Sustainability",3,"https://vkrf.org","Sustainability; sustainable development","URL verified. Niche environmental funder."),
  F("Walmart Foundation","Corporate","CE",3,"https://walmart.org","Closed-loop supply chain; food systems","Corporate foundation."),
  F("Walton Family Foundation","Foundation","Sustainability",5,"https://www.waltonfamilyfoundation.org","Food systems; sustainability","Oceans/rivers/agriculture."),
@@ -341,165 +369,352 @@ const FUNDERS = [
 
 /* ---- live CSV read (progressive enhancement; embedded data is the fallback) */
 let DATA = FUNDERS;
-const TYPE_MAP={"Federal Agency":"Federal","State Agency":"State","Private Foundation":"Foundation",
-  "University Internal":"University","Corporate":"Corporate","NGO":"NGO"};
-function parseCSV(text){
-  const rows=[];let i=0,f="",row=[],q=false;
-  while(i<text.length){const c=text[i];
-    if(q){ if(c==='"'){ if(text[i+1]==='"'){f+='"';i++;} else q=false; } else f+=c; }
-    else { if(c==='"')q=true; else if(c===',' ){row.push(f);f="";}
-      else if(c==='\n'){row.push(f);rows.push(row);row=[];f="";}
-      else if(c==='\r'){} else f+=c; }
+const TYPE_MAP = {
+  "Federal Agency": "Federal", "State Agency": "State", "Private Foundation": "Foundation",
+  "University Internal": "University", "Corporate": "Corporate", "NGO": "NGO"
+};
+
+function parseCSV(text) {
+  const rows = []; let i = 0, f = "", row = [], q = false;
+  while(i < text.length) {
+    const c = text[i];
+    if(q) {
+      if(c === '"') {
+        if(text[i+1] === '"') { f += '"'; i++; } else q = false;
+      } else f += c;
+    } else {
+      if(c === '"') q = true;
+      else if(c === ',') { row.push(f); f = ""; }
+      else if(c === '\n') { row.push(f); rows.push(row); row = []; f = ""; }
+      else if(c === '\r') {} 
+      else f += c;
+    }
     i++;
   }
-  if(f.length||row.length){row.push(f);rows.push(row);}
+  if(f.length || row.length) { row.push(f); rows.push(row); }
   return rows;
 }
-async function loadData(){
-  try{
-    const res=await fetch("circular_economy_funders_100.csv",{cache:"no-store"});
+
+async function loadData() {
+  try {
+    const res = await fetch("circular_economy_funders_100.csv", {cache: "no-store"});
     if(!res.ok) throw new Error("no csv");
-    const rows=parseCSV(await res.text()).filter(r=>r.length>=9 && /^\d+$/.test((r[0]||"").trim()));
-    const mapTopic=s=>/both/i.test(s)?"Both":/circular/i.test(s)?"CE":"Sustainability";
-    const parsed=rows.map(r=>({
-      name:r[1].trim(), type:TYPE_MAP[r[2].trim()]||"NGO", topic:mapTopic(r[3]||""),
-      url:r[4].trim(), papers:parseInt(r[5],10)||0,
-      subfields:(r[7]||"").trim(), note:(r[8]||"").trim()
-    })).filter(f=>f.name && TYPES[f.type]);
-    if(parsed.length>=50){ DATA=parsed; console.info("Loaded "+parsed.length+" funders from CSV."); }
-  }catch(e){ console.info("Using embedded data (CSV fetch unavailable â€” expected offline / in-sandbox)."); }
+    const rows = parseCSV(await res.text()).filter(r => r.length >= 9 && /^\d+$/.test((r[0] || "").trim()));
+    const mapTopic = s => /both/i.test(s) ? "Both" : /circular/i.test(s) ? "CE" : "Sustainability";
+    const parsed = rows.map(r => ({
+      name: r[1].trim(), 
+      type: TYPE_MAP[r[2].trim()] || "NGO", 
+      topic: mapTopic(r[3] || ""),
+      url: r[4].trim(), 
+      papers: parseInt(r[5], 10) || 0,
+      subfields: (r[7] || "").trim(), 
+      note: (r[8] || "").trim()
+    })).filter(f => f.name && TYPES[f.type]);
+    if(parsed.length >= 50) { 
+      DATA = parsed; 
+      console.info("Loaded " + parsed.length + " funders from CSV."); 
+    }
+  } catch(e) { 
+    console.info("Using embedded data (CSV fetch unavailable — expected offline / in-sandbox)."); 
+  }
 }
 
 /* ---- helpers -------------------------------------------------------------- */
-const $ = s=>document.querySelector(s);
-const cv = v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const $ = s => document.querySelector(s);
+const cv = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const tt = $("#tt");
-function bindTip(el,html){
-  el.addEventListener("mousemove",e=>{tt.innerHTML=html;tt.style.opacity=1;
-    let x=e.clientX+14,y=e.clientY+14;
-    if(x+tt.offsetWidth>innerWidth)x=e.clientX-tt.offsetWidth-14;
-    if(y+tt.offsetHeight>innerHeight)y=e.clientY-tt.offsetHeight-14;
-    tt.style.left=x+"px";tt.style.top=y+"px";});
-  el.addEventListener("mouseleave",()=>tt.style.opacity=0);
+
+function bindTip(el, html) {
+  el.addEventListener("mousemove", e => {
+    tt.innerHTML = html;
+    tt.style.opacity = 1;
+    let x = e.clientX + 14, y = e.clientY + 14;
+    if(x + tt.offsetWidth > window.innerWidth) x = e.clientX - tt.offsetWidth - 14;
+    if(y + tt.offsetHeight > window.innerHeight) y = e.clientY - tt.offsetHeight - 14;
+    tt.style.left = x + "px";
+    tt.style.top = y + "px";
+  });
+  el.addEventListener("mouseleave", () => tt.style.opacity = 0);
 }
+
+/* ---- UI State Management -------------------------------------------------- */
+let currentSort = { key: 'papers', dir: 'desc' };
 
 /* ---- KPIs ----------------------------------------------------------------- */
-function renderKPIs(){
-  const total=DATA.length;
-  const nonFed=Math.round(DATA.filter(f=>f.type!=="Federal").length/total*100);
-  const top=[...DATA].sort((a,b)=>b.papers-a.papers)[0];
-  const items=[
-    {v:total,l:"Unique funding organizations",h:"deduplicated by parent org"},
-    {v:Object.keys(TYPES).length,l:"Funder types represented",h:"federal â†’ university-internal"},
-    {v:nonFed+"%",l:"Non-federal share",h:"foundations, corporate, state, NGO, university"},
-    {v:top.name.split("(")[0].trim().replace("National Science Foundation","NSF"),
-      l:"Most-cited funder (indicative)",h:top.papers+" papers Â· relative estimate"},
+function renderKPIs() {
+  const total = DATA.length;
+  const nonFedCount = DATA.filter(f => f.type !== "Federal").length;
+  const nonFed = Math.round((nonFedCount / total) * 100);
+  const totalPapers = DATA.reduce((acc, f) => acc + f.papers, 0);
+  const maxPapersFunder = [...DATA].sort((a,b) => b.papers - a.papers)[0];
+
+  const items = [
+    { v: total, l: "Unique funders", h: "Deduplicated by parent org" },
+    { v: Object.keys(TYPES).length, l: "Funder categories", h: "Federal down to university-internal" },
+    { v: nonFed + "%", l: "Non-federal share", h: `${nonFedCount} foundations, states, corporates & NGOs` },
+    { v: maxPapersFunder.papers, l: "Max relative papers", h: `By ${maxPapersFunder.name}` }
   ];
-  $("#kpis").innerHTML=items.map(i=>`<div class="kpi"><div class="v">${i.v}</div>
-    <div class="l">${i.l}</div><div class="h">${i.h}</div></div>`).join("");
+
+  $("#kpis").innerHTML = items.map(item => `
+    <div class="kpi">
+      <div class="v">${item.v}</div>
+      <div class="l">${item.l}</div>
+      <div class="h">${item.h}</div>
+    </div>
+  `).join('');
 }
 
-/* ---- bar charts ----------------------------------------------------------- */
-function barRows(container,data,colorFn,fmt=v=>v){
-  const max=Math.max(...data.map(d=>d.value));
-  container.innerHTML="";
-  data.forEach(d=>{
-    const row=document.createElement("div");row.className="row";
-    const w=(d.value/max*100).toFixed(1);
-    row.innerHTML=`<div class="name" title="${d.label}">${d.label}</div>
-      <div class="track"><div class="fill" style="width:${w}%;background:${colorFn(d)}"></div></div>
-      <div class="val">${fmt(d.value)}</div>`;
-    bindTip(row.querySelector(".fill"),`<strong>${d.label}</strong><br>${fmt(d.value)} ${d.tipUnit||""}`);
-    container.appendChild(row);
+/* ---- Charts --------------------------------------------------------------- */
+function renderCharts() {
+  // 1. Funders by Type
+  const typesData = {};
+  Object.keys(TYPES).forEach(k => typesData[k] = 0);
+  DATA.forEach(f => { if(typesData[f.type] !== undefined) typesData[f.type]++; });
+  
+  const maxTypeVal = Math.max(...Object.values(typesData));
+  const typeSortedKeys = Object.keys(TYPES).sort((a,b) => typesData[b] - typesData[a]);
+
+  $("#typeChart").innerHTML = typeSortedKeys.map(k => {
+    const val = typesData[k];
+    const pct = maxTypeVal > 0 ? (val / maxTypeVal) * 100 : 0;
+    const colorVar = TYPES[k].v;
+    return `
+      <div class="row" data-type-bar="${k}">
+        <div class="name" title="${TYPES[k].label}">${TYPES[k].label}</div>
+        <div class="track">
+          <div class="fill" style="width: ${pct}%; background: var(${colorVar});"></div>
+        </div>
+        <div class="val">${val}</div>
+      </div>
+    `;
+  }).join('');
+
+  // Set up chart interactivity/filter triggers on click
+  document.querySelectorAll("[data-type-bar]").forEach(el => {
+    const type = el.getAttribute("data-type-bar");
+    bindTip(el, `<strong>${TYPES[type].label}</strong><br>${typesData[type]} matching funders.<br>Click to isolate.`);
+    el.style.cursor = 'pointer';
+    el.onclick = () => {
+      $("#typeFilter").value = type;
+      updateTable();
+    };
   });
-}
-function renderTypeChart(){
-  const counts=Object.keys(TYPES).map(k=>({
-    key:k,label:TYPES[k].label,value:DATA.filter(f=>f.type===k).length,tipUnit:"funders"
-  })).sort((a,b)=>b.value-a.value);
-  barRows($("#typeChart"),counts,d=>cv(TYPES[d.key].v));
-  $("#typeLegend").innerHTML=Object.keys(TYPES).map(k=>
-    `<span><i class="swatch" style="background:${cv(TYPES[k].v)}"></i>${TYPES[k].label}</span>`).join("");
-}
-function renderTopicChart(){
-  const order=["Both","Sustainability","CE"];
-  const labels={CE:"Circular Economy",Sustainability:"Sustainability",Both:"Both"};
-  const counts=order.map(k=>({key:k,label:labels[k],
-    value:DATA.filter(f=>f.topic===k).length,tipUnit:"funders"}));
-  barRows($("#topicChart"),counts,d=>cv(TOPICV[d.key]));
-}
-function renderTopChart(){
-  const top=[...DATA].sort((a,b)=>b.papers-a.papers).slice(0,10).map(f=>({
-    label:f.name.replace(/\s*\(.*?\)/,"").replace("National Science Foundation","NSF")
-      .replace("U.S. Department of Energy","DOE").replace("U.S. Environmental Protection Agency","EPA")
-      .replace("U.S. Department of Agriculture / NIFA","USDA/NIFA").replace("U.S. Department of Defense","DoD"),
-    value:f.papers,tipUnit:"papers (indicative)"}));
-  barRows($("#topChart"),top,()=>cv("--bar"));
+
+  // Render Type Legend
+  $("#typeLegend").innerHTML = Object.keys(TYPES).map(k => `
+    <span><span class="swatch" style="background: var(${TYPES[k].v});"></span>${TYPES[k].label}</span>
+  `).join('');
+
+  // 2. Primary Topical Association
+  const topicsData = { CE: 0, Sustainability: 0, Both: 0 };
+  DATA.forEach(f => { if(topicsData[f.topic] !== undefined) topicsData[f.topic]++; });
+  const maxTopicVal = Math.max(...Object.values(topicsData));
+
+  const topicLabels = { CE: "Circular Economy", Sustainability: "Sustainability", Both: "Both portfolios" };
+  $("#topicChart").innerHTML = Object.keys(topicsData).map(k => {
+    const val = topicsData[k];
+    const pct = maxTopicVal > 0 ? (val / maxTopicVal) * 100 : 0;
+    const colorVar = TOPICV[k];
+    return `
+      <div class="row" data-topic-bar="${k}">
+        <div class="name" title="${topicLabels[k]}">${topicLabels[k]}</div>
+        <div class="track">
+          <div class="fill" style="width: ${pct}%; background: var(${colorVar});"></div>
+        </div>
+        <div class="val">${val}</div>
+      </div>
+    `;
+  }).join('');
+
+  document.querySelectorAll("[data-topic-bar]").forEach(el => {
+    const topic = el.getAttribute("data-topic-bar");
+    bindTip(el, `<strong>${topicLabels[topic]}</strong><br>${topicsData[topic]} matching funders.<br>Click to isolate.`);
+    el.style.cursor = 'pointer';
+    el.onclick = () => {
+      $("#topicFilter").value = topic;
+      updateTable();
+    };
+  });
+
+  // 3. Top 10 Funders by Relative Paper Frequency
+  const top10 = [...DATA].sort((a,b) => b.papers - a.papers).slice(0, 10);
+  const maxPapers = top10[0] ? top10[0].papers : 1;
+
+  $("#topChart").innerHTML = top10.map(f => {
+    const pct = (f.papers / maxPapers) * 100;
+    const typeColor = TYPES[f.type] ? TYPES[f.type].v : "--muted";
+    return `
+      <div class="row" data-top-funder="${f.name}">
+        <div class="name" title="${f.name}">${f.name}</div>
+        <div class="track">
+          <div class="fill" style="width: ${pct}%; background: var(${typeColor});"></div>
+        </div>
+        <div class="val">${f.papers}</div>
+      </div>
+    `;
+  }).join('');
+
+  document.querySelectorAll("[data-top-funder]").forEach((el, index) => {
+    const f = top10[index];
+    bindTip(el, `<strong>${f.name}</strong><br>Type: ${TYPES[f.type].label}<br>Est. papers: ${f.papers}<br><em>${f.note}</em>`);
+  });
 }
 
-/* ---- table ---------------------------------------------------------------- */
-let sortK="papers",sortDir=-1;
-function renderTable(){
-  const q=$("#search").value.toLowerCase().trim();
-  const tf=$("#typeFilter").value, pf=$("#topicFilter").value;
-  let rows=DATA.filter(f=>{
-    const hay=(f.name+" "+f.subfields+" "+f.note).toLowerCase();
-    return (!q||hay.includes(q)) && (!tf||f.type===tf) && (!pf||f.topic===pf);
+/* ---- Controls Configuration ---------------------------------------------- */
+function initControls() {
+  const typeSelect = $("#typeFilter");
+  // Clear other than first option
+  typeSelect.innerHTML = '<option value="">All types</option>';
+  Object.keys(TYPES).forEach(k => {
+    const opt = document.createElement("option");
+    opt.value = k;
+    opt.textContent = TYPES[k].label;
+    typeSelect.appendChild(opt);
   });
-  rows.sort((a,b)=>{
-    let x=a[sortK],y=b[sortK];
-    if(typeof x==="string"){x=x.toLowerCase();y=y.toLowerCase();}
-    return x<y?-1*sortDir:x>y?1*sortDir:0;
-  });
-  const labels={CE:"Circular Economy",Sustainability:"Sustainability",Both:"Both"};
-  $("#tbody").innerHTML=rows.map(f=>{
-    const tc=cv(TYPES[f.type].v), pc=cv(TOPICV[f.topic]);
-    const host=f.url.replace(/^https?:\/\//,"").replace(/\/.*$/,"");
-    return `<tr>
-      <td><div class="fname">${f.name}</div><div class="fsub">${f.note}</div></td>
-      <td><span class="pill" style="background:${tc}">${TYPES[f.type].label}</span></td>
-      <td><span class="topic"><i class="dot" style="background:${pc}"></i>${labels[f.topic]}</span></td>
-      <td class="num">${f.papers}</td>
-      <td>${f.subfields}</td>
-      <td><a href="${f.url}" target="_blank" rel="noopener">${host} â†—</a></td>
-    </tr>`;
-  }).join("");
-  $("#tableCount").textContent=`${rows.length} of ${DATA.length} funders`;
-  document.querySelectorAll("thead th[data-k]").forEach(th=>{
-    const a=th.querySelector(".arrow");
-    a.textContent = th.dataset.k===sortK ? (sortDir===-1?"â–¼":"â–²") : "";
-  });
-}
-function initTable(){
-  const tf=$("#typeFilter");
-  Object.keys(TYPES).forEach(k=>{const o=document.createElement("option");
-    o.value=k;o.textContent=TYPES[k].label;tf.appendChild(o);});
-  $("#search").addEventListener("input",renderTable);
-  $("#typeFilter").addEventListener("change",renderTable);
-  $("#topicFilter").addEventListener("change",renderTable);
-  document.querySelectorAll("thead th[data-k]").forEach(th=>{
-    th.addEventListener("click",()=>{
-      const k=th.dataset.k;
-      if(k===sortK)sortDir*=-1; else {sortK=k;sortDir=(k==="papers")?-1:1;}
-      renderTable();
+
+  $("#search").addEventListener("input", updateTable);
+  $("#typeFilter").addEventListener("change", updateTable);
+  $("#topicFilter").addEventListener("change", updateTable);
+
+  // Set up table headers sorting triggers
+  document.querySelectorAll("thead th[data-k]").forEach(th => {
+    th.addEventListener("click", () => {
+      const key = th.getAttribute("data-k");
+      if(currentSort.key === key) {
+        currentSort.dir = currentSort.dir === 'asc' ? 'desc' : 'asc';
+      } else {
+        currentSort.key = key;
+        currentSort.dir = key === 'papers' ? 'desc' : 'asc';
+      }
+      updateTableHeaders();
+      updateTable();
     });
   });
 }
 
-/* ---- theme ---------------------------------------------------------------- */
-function renderAll(){renderKPIs();renderTypeChart();renderTopicChart();renderTopChart();renderTable();}
-$("#themeBtn").addEventListener("click",()=>{
-  const cur=document.documentElement.getAttribute("data-theme");
-  const sysDark=matchMedia("(prefers-color-scheme:dark)").matches;
-  const next=(cur? cur==="dark":sysDark)?"light":"dark";
-  document.documentElement.setAttribute("data-theme",next);
-  renderAll();
-});
-matchMedia("(prefers-color-scheme:dark)").addEventListener("change",renderAll);
+function updateTableHeaders() {
+  document.querySelectorAll("thead th[data-k]").forEach(th => {
+    const key = th.getAttribute("data-k");
+    const arrowSpan = th.querySelector(".arrow");
+    if(key === currentSort.key) {
+      arrowSpan.textContent = currentSort.dir === 'asc' ? '▲' : '▼';
+    } else {
+      arrowSpan.textContent = '';
+    }
+  });
+}
 
-loadData().then(()=>{ initTable(); renderAll(); });
+/* ---- Table Engine --------------------------------------------------------- */
+function updateTable() {
+  const query = $("#search").value.toLowerCase().trim();
+  const selectedType = $("#typeFilter").value;
+  const selectedTopic = $("#topicFilter").value;
+
+  // Filter
+  const filtered = DATA.filter(f => {
+    if(selectedType && f.type !== selectedType) return false;
+    if(selectedTopic && f.topic !== selectedTopic) return false;
+    if(query) {
+      const matchName = f.name.toLowerCase().includes(query);
+      const matchSub = f.subfields.toLowerCase().includes(query);
+      const matchNote = f.note.toLowerCase().includes(query);
+      if(!matchName && !matchSub && !matchNote) return false;
+    }
+    return true;
+  });
+
+  // Sort
+  filtered.sort((a, b) => {
+    let valA = a[currentSort.key];
+    let valB = b[currentSort.key];
+
+    if(typeof valA === 'string') {
+      valA = valA.toLowerCase();
+      valB = valB.toLowerCase();
+    }
+
+    if(valA < valB) return currentSort.dir === 'asc' ? -1 : 1;
+    if(valA > valB) return currentSort.dir === 'asc' ? 1 : -1;
+    return 0;
+  });
+
+  // Render Table
+  const tbody = $("#tbody");
+  if(filtered.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; padding: 30px; color: var(--muted);">No matching funders found.</td></tr>`;
+  } else {
+    tbody.innerHTML = filtered.map(f => {
+      const typeVar = TYPES[f.type] ? TYPES[f.type].v : "--muted";
+      const topicVar = TOPICV[f.topic] || "--muted";
+      const topicLabel = f.topic === 'CE' ? 'Circular Economy' : f.topic === 'Sustainability' ? 'Sustainability' : 'Both';
+      return `
+        <tr data-row-id="${f.name}">
+          <td>
+            <div class="fname">${f.name}</div>
+            <div class="fsub">${f.note}</div>
+          </td>
+          <td>
+            <span class="pill" style="background: var(${typeVar});">${TYPES[f.type].label}</span>
+          </td>
+          <td>
+            <span class="topic"><span class="dot" style="background: var(${topicVar});"></span>${topicLabel}</span>
+          </td>
+          <td class="num">${f.papers}</td>
+          <td style="color: var(--ink-2); font-size: 12px; line-height: 1.45;">${f.subfields}</td>
+          <td>
+            <a href="${f.url}" target="_blank" rel="noopener noreferrer" title="Go to ${f.name} website">Link ↗</a>
+          </td>
+        </tr>
+      `;
+    }).join('');
+
+    // Bind tooltip interactions to rows
+    filtered.forEach(f => {
+      const tr = tbody.querySelector(`[data-row-id="${f.name}"]`);
+      if(tr) {
+        bindTip(tr, `
+          <strong style="font-size:13px; color: var(--accent-ink);">${f.name}</strong><br>
+          <hr style="border:0; border-top:1px solid var(--line); margin:6px 0;">
+          <strong>Target Subfields:</strong> ${f.subfields}<br>
+          <strong>Context & Coverage:</strong> ${f.note}
+        `);
+      }
+    });
+  }
+
+  // Update counter
+  $("#tableCount").textContent = `${filtered.length} of ${DATA.length} funders showing`;
+}
+
+/* ---- Theme System --------------------------------------------------------- */
+function initTheme() {
+  const btn = $("#themeBtn");
+  const getTheme = () => localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  const setTheme = t => {
+    document.documentElement.setAttribute("data-theme", t);
+    localStorage.setItem("theme", t);
+    btn.innerHTML = t === "dark" ? "☀️ Light" : "🌙 Dark";
+  };
+
+  setTheme(getTheme());
+  btn.addEventListener("click", () => {
+    const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    setTheme(next);
+  });
+}
+
+/* ---- Initialize Page ------------------------------------------------------ */
+async function init() {
+  initTheme();
+  await loadData();
+  renderKPIs();
+  renderCharts();
+  initControls();
+  updateTableHeaders();
+  updateTable();
+}
+
+window.addEventListener("DOMContentLoaded", init);
 </script>
-
 </body>
 </html>
-

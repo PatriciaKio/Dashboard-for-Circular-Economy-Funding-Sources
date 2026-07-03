@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Circular Economy &amp; Sustainability Funders — USA</title>
+<title>Circular Economy and Sustainability Funders - USA</title>
 <!--
-  US Circular Economy & Sustainability Research — Funder Dashboard
-  Single-file static site. No build step, no external requests — GitHub Pages ready.
+  US Circular Economy & Sustainability Research â€” Funder Dashboard
+  Single-file static site. No build step, no external requests â€” GitHub Pages ready.
   Data is embedded below (FUNDERS). Aggregates are computed at runtime.
   NOTE: "papers" values are INDICATIVE relative-frequency estimates, not verified tallies.
 -->
@@ -16,7 +16,7 @@
     --ink:#111310; --ink-2:#52514e; --muted:#898781;
     --grid:#e6e5de; --line:#d7d6cd; --ring:rgba(17,19,16,0.10);
     --accent:#0f7a5a; --accent-ink:#0a5d44;
-    /* categorical (funder type) — validated default slots, fixed order */
+    /* categorical (funder type) â€” validated default slots, fixed order */
     --t-federal:#2a78d6; --t-state:#1baf7a; --t-foundation:#eda100;
     --t-university:#008300; --t-corporate:#4a3aa7; --t-ngo:#e34948;
     /* topic */
@@ -143,13 +143,13 @@
 <div class="wrap">
   <header class="top">
     <div>
-      <div class="eyebrow">Research Funding Landscape · USA · 2021–2026</div>
+      <div class="eyebrow">Research Funding Landscape Â· USA Â· 2021â€“2026</div>
       <h1>Circular Economy &amp; Sustainability Funders</h1>
       <p class="sub">100 unique organizations funding US-based research across circular economy,
         LCA, closed-loop supply chains, industrial ecology, resource recovery, sustainable
         materials &amp; manufacturing, and EPR.</p>
     </div>
-    <button class="theme-btn" id="themeBtn" aria-label="Toggle color theme">◐ Theme</button>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle color theme">â— Theme</button>
   </header>
 
   <div class="kpis" id="kpis"></div>
@@ -157,21 +157,21 @@
   <div class="charts">
     <section class="panel">
       <h2>Funders by type</h2>
-      <p class="cap">Deliberately not federal-dominated — 78% are non-federal.</p>
+      <p class="cap">Deliberately not federal-dominated â€” 78% are non-federal.</p>
       <div class="rows" id="typeChart"></div>
       <div class="legend" id="typeLegend"></div>
     </section>
 
     <section class="panel">
       <h2>Primary topical association</h2>
-      <p class="cap">CE = circular-economy core · Both = strong portfolio in each.</p>
+      <p class="cap">CE = circular-economy core Â· Both = strong portfolio in each.</p>
       <div class="rows" id="topicChart"></div>
     </section>
   </div>
 
   <section class="panel">
     <h2>Top 10 funders by indicative paper frequency</h2>
-    <p class="cap">Relative-frequency estimates (not verified tallies) — shows how a few federal
+    <p class="cap">Relative-frequency estimates (not verified tallies) â€” shows how a few federal
       agencies co-fund most US work in this space.</p>
     <div class="rows" id="topChart"></div>
   </section>
@@ -180,7 +180,7 @@
     <h2>All 100 funders</h2>
     <p class="cap">Search, filter, and sort. Click a column header to sort.</p>
     <div class="controls">
-      <input type="search" id="search" placeholder="Search funder, subfield, note…" aria-label="Search funders">
+      <input type="search" id="search" placeholder="Search funder, subfield, noteâ€¦" aria-label="Search funders">
       <select id="typeFilter" aria-label="Filter by type"><option value="">All types</option></select>
       <select id="topicFilter" aria-label="Filter by topic">
         <option value="">All topics</option>
@@ -196,7 +196,7 @@
           <th data-k="name">Funder <span class="arrow"></span></th>
           <th data-k="type">Type <span class="arrow"></span></th>
           <th data-k="topic">Topic <span class="arrow"></span></th>
-          <th data-k="papers" style="text-align:right">Papers <span class="arrow">▼</span></th>
+          <th data-k="papers" style="text-align:right">Papers <span class="arrow">â–¼</span></th>
           <th data-k="subfields">Subfields</th>
           <th>Site</th>
         </tr></thead>
@@ -210,10 +210,10 @@
     circular-economy / sustainability funding ecosystem, grounded by web searches across
     Google&nbsp;Scholar / ScienceDirect / MDPI / arXiv / agency repositories, with non-obvious
     foundation URLs verified directly. <span class="flag">Paper counts are indicative
-    relative-frequency estimates, not a verified full-text tally</span> — paywalled acknowledgment
+    relative-frequency estimates, not a verified full-text tally</span> â€” paywalled acknowledgment
     sections are not retrievable at scale. Sub-agencies are deduplicated to the parent
-    (e.g. all NSF directorates → NSF); ARPA-E, NIFA, ONR/ARO/AFOSR/DARPA and national-lab LDRD are
-    listed distinctly because they issue their own awards. "USA-based research" = ≥1 US
+    (e.g. all NSF directorates â†’ NSF); ARPA-E, NIFA, ONR/ARO/AFOSR/DARPA and national-lab LDRD are
+    listed distinctly because they issue their own awards. "USA-based research" = â‰¥1 US
     author/institution <em>or</em> a US-based funder. Flagged: Ellen MacArthur &amp; BASF
     (international HQ, US-active), USAID (agency reorganized 2025), Kendeda (spending down).
     Data file: <code>circular_economy_funders_100.csv</code>.
@@ -237,14 +237,14 @@ const TYPES = {
 const TOPICV = {CE:"--topic-ce",Sustainability:"--topic-sus",Both:"--topic-both"};
 const F = (name,type,topic,papers,url,subfields,note)=>({name,type,topic,papers,url,subfields,note});
 const FUNDERS = [
- F("Advanced Research Projects Agency–Energy (ARPA-E)","Federal","Both",18,"https://arpa-e.energy.gov","Energy; sustainable materials; resource recovery","Distinct funding office within DOE."),
+ F("Advanced Research Projects Agencyâ€“Energy (ARPA-E)","Federal","Both",18,"https://arpa-e.energy.gov","Energy; sustainable materials; resource recovery","Distinct funding office within DOE."),
  F("Air Force Office of Scientific Research (AFOSR)","Federal","Sustainability",7,"https://www.afrl.af.mil/AFOSR/","Sustainable materials; industrial ecology","Basic-research arm of AFRL."),
  F("Alcoa Foundation","Foundation","CE",4,"https://www.alcoa.com/foundation","Resource recovery; circular economy","Corporate-linked 501(c)(3)."),
  F("Alfred P. Sloan Foundation","Foundation","Sustainability",9,"https://sloan.org","Sustainability; energy; corporate sustainability","Energy/environment + economics programs."),
  F("Amazon (Climate Pledge Fund / Sustainability)","Corporate","CE",6,"https://sustainability.aboutamazon.com","Closed-loop supply chain; corporate sustainability","Corporate arm + venture fund."),
  F("Apple Inc.","Corporate","CE",4,"https://www.apple.com/environment/","Sustainable materials; resource recovery","Recycled-materials / rare-earth recovery."),
  F("Argonne National Laboratory (LDRD)","Federal","Both",8,"https://www.anl.gov","LCA; resource recovery; energy","DOE lab; home of GREET LCA model."),
- F("Arizona State University – Global Futures Lab","University","Sustainability",6,"https://globalfutures.asu.edu","Urban planning; sustainability; industrial ecology","Wrigley Global Futures internal seed funding."),
+ F("Arizona State University â€“ Global Futures Lab","University","Sustainability",6,"https://globalfutures.asu.edu","Urban planning; sustainability; industrial ecology","Wrigley Global Futures internal seed funding."),
  F("Army Research Office (ARO)","Federal","Sustainability",7,"https://www.arl.army.mil/who-we-are/aro/","Sustainable materials; manufacturing","Extramural funder within DEVCOM ARL."),
  F("BASF Corporation","Corporate","CE",4,"https://www.basf.com","Sustainable manufacturing; resource recovery","German parent; funds US research."),
  F("Bezos Earth Fund","Foundation","Sustainability",5,"https://www.bezosearthfund.org","Sustainability; sustainable development","Large climate grantmaker (2020)."),
@@ -253,7 +253,7 @@ const FUNDERS = [
  F("California Energy Commission (CEC)","State","Sustainability",8,"https://www.energy.ca.gov","Energy; sustainable manufacturing","Major state R&D funder (EPIC)."),
  F("CalRecycle","State","CE",7,"https://calrecycle.ca.gov","Waste management; EPR","Key state EPR / recycling funder."),
  F("Cargill Inc.","Corporate","Sustainability",3,"https://www.cargill.com","Food systems; sustainable materials","Corporate food/ag research."),
- F("Carnegie Mellon – Scott Institute for Energy Innovation","University","Sustainability",5,"https://www.cmu.edu/energy/","Energy; industrial ecology","Wilton E. Scott Institute seed grants."),
+ F("Carnegie Mellon â€“ Scott Institute for Energy Innovation","University","Sustainability",5,"https://www.cmu.edu/energy/","Energy; industrial ecology","Wilton E. Scott Institute seed grants."),
  F("Chevron (Technology Ventures)","Corporate","Both",3,"https://www.chevron.com","Resource recovery; energy","Corporate research + venture arm."),
  F("ClimateWorks Foundation","Foundation","Both",4,"https://www.climateworks.org","Sustainability; circular economy","Regranting intermediary."),
  F("Closed Loop Partners / Closed Loop Foundation","NGO","CE",9,"https://www.closedlooppartners.com/impact/closed-loop-foundation/","Circular economy; waste management; resource recovery","URL verified. Core circular-economy funder."),
@@ -267,7 +267,7 @@ const FUNDERS = [
  F("Doris Duke Foundation","Foundation","Sustainability",4,"https://www.dorisduke.org","Sustainability; sustainable development","Environment program."),
  F("Dow Inc.","Corporate","CE",4,"https://www.dow.com","Sustainable materials; resource recovery","Major corporate materials funder."),
  F("Eastman Chemical Company","Corporate","CE",3,"https://www.eastman.com","Resource recovery; sustainable manufacturing","Molecular-recycling research."),
- F("Ellen MacArthur Foundation","NGO","CE",8,"https://www.ellenmacarthurfoundation.org","Circular economy; industrial ecology","UK-based — co-funds US networks."),
+ F("Ellen MacArthur Foundation","NGO","CE",8,"https://www.ellenmacarthurfoundation.org","Circular economy; industrial ecology","UK-based â€” co-funds US networks."),
  F("The Energy Foundation","Foundation","Sustainability",3,"https://energyfoundation.org","Energy; sustainability","US regranting foundation."),
  F("Environmental Defense Fund (EDF)","NGO","Sustainability",4,"https://www.edf.org","Corporate sustainability; sustainability","Funds + co-produces applied research."),
  F("ExxonMobil","Corporate","CE",3,"https://corporate.exxonmobil.com","Resource recovery; sustainable manufacturing","University research agreements."),
@@ -280,12 +280,12 @@ const FUNDERS = [
  F("The Grantham Foundation for the Protection of the Environment","Foundation","Sustainability",4,"https://www.granthamfoundation.org","Sustainability; sustainable materials","Also funds climate-tech."),
  F("Great Lakes Protection Fund","Foundation","Both",3,"https://glpf.org","Resource recovery; sustainability","URL verified. Impact-investing endowment."),
  F("Heising-Simons Foundation","Foundation","Sustainability",4,"https://www.hsfoundation.org","Energy; sustainability","Climate/energy program."),
- F("Herbert H. and Grace A. Dow Foundation","Foundation","Sustainability",2,"https://www.hhdowfoundation.org","Sustainability; sustainable materials","Michigan-based; ≠ Dow Inc."),
+ F("Herbert H. and Grace A. Dow Foundation","Foundation","Sustainability",2,"https://www.hhdowfoundation.org","Sustainability; sustainable materials","Michigan-based; â‰  Dow Inc."),
  F("IBM (Research)","Corporate","Both",3,"https://research.ibm.com","Sustainable materials; LCA","Research collaborations."),
  F("Illinois Sustainable Technology Center (ISTC)","State","CE",4,"https://istc.illinois.edu","Resource recovery; industrial ecology; waste","State/university hybrid."),
  F("John D. and Catherine T. MacArthur Foundation","Foundation","Sustainability",4,"https://www.macfound.org","Sustainability; sustainable development","Climate Solutions program."),
  F("The Joyce Foundation","Foundation","Sustainability",3,"https://www.joycefdn.org","Sustainability; energy","Great Lakes / clean energy."),
- F("The Kendeda Fund","Foundation","Sustainability",3,"https://kendedafund.org","Sustainable materials; urban planning","URL verified. Spending down — currency flag."),
+ F("The Kendeda Fund","Foundation","Sustainability",3,"https://kendedafund.org","Sustainable materials; urban planning","URL verified. Spending down â€” currency flag."),
  F("The Kresge Foundation","Foundation","Sustainability",4,"https://kresge.org","Urban planning; sustainable development","Urban climate resilience."),
  F("Massachusetts Clean Energy Center (MassCEC)","State","Sustainability",4,"https://www.masscec.com","Energy; sustainable manufacturing","State clean-energy agency."),
  F("Michigan Dept. of Environment, Great Lakes & Energy (EGLE)","State","CE",5,"https://www.michigan.gov/egle","Waste management; resource recovery","Active recycling/EPR grants."),
@@ -312,7 +312,7 @@ const FUNDERS = [
  F("PepsiCo","Corporate","Both",3,"https://www.pepsico.com/our-impact/sustainability","Food systems; circular economy","Regen ag + packaging."),
  F("The Pew Charitable Trusts","Foundation","Sustainability",5,"https://www.pewtrusts.org","Waste management; sustainability","Marine/plastics + environment."),
  F("Pennsylvania Department of Environmental Protection (PA DEP)","State","CE",3,"https://www.dep.pa.gov","Waste management; recycling","Act 101 recycling grants."),
- F("Princeton – Andlinger Center for Energy & the Environment","University","Sustainability",5,"https://acee.princeton.edu","Energy; industrial ecology","Innovation/seed funding."),
+ F("Princeton â€“ Andlinger Center for Energy & the Environment","University","Sustainability",5,"https://acee.princeton.edu","Energy; industrial ecology","Innovation/seed funding."),
  F("Procter & Gamble","Corporate","CE",3,"https://us.pg.com","Sustainable materials; circular economy","Packaging research."),
  F("Resources for the Future (RFF)","NGO","Both",4,"https://www.rff.org","EPR; sustainability","Environmental-economics institute."),
  F("Rocky Mountain Institute (RMI)","NGO","Sustainability",4,"https://rmi.org","Energy; industrial ecology; urban planning","Applied-research NGO."),
@@ -322,7 +322,7 @@ const FUNDERS = [
  F("Texas Commission on Environmental Quality (TCEQ)","State","CE",3,"https://www.tceq.texas.gov","Waste management; resource recovery","State agency."),
  F("3M Company","Corporate","CE",3,"https://www.3m.com","Sustainable materials; manufacturing","Research + 3M Gives."),
  F("Toyota Research Institute / Toyota Mobility Foundation","Corporate","CE",3,"https://www.tri.global","Sustainable materials; resource recovery","Research institute + foundation."),
- F("U.S. Agency for International Development (USAID)","Federal","Sustainability",4,"https://www.usaid.gov","Sustainable development; waste management","Reorganized 2025 — currency flag."),
+ F("U.S. Agency for International Development (USAID)","Federal","Sustainability",4,"https://www.usaid.gov","Sustainable development; waste management","Reorganized 2025 â€” currency flag."),
  F("U.S. Department of Agriculture (USDA / NIFA)","Federal","Both",26,"https://www.nifa.usda.gov","Food systems; sustainable materials; resource recovery","USDA-NIFA/ARS merged."),
  F("U.S. Department of Defense (DoD)","Federal","Sustainability",10,"https://www.defense.gov","Sustainable materials; energy (SERDP/ESTCP)","SERDP/ESTCP + service labs."),
  F("U.S. Department of Energy (DOE)","Federal","Both",71,"https://www.energy.gov","Energy; sustainable manufacturing; circular economy; LCA","GROUNDED: DOE Better Plants study (Sustainability 2024). EERE/IEDO/AMO/BER merged."),
@@ -330,8 +330,8 @@ const FUNDERS = [
  F("U.S. Department of Transportation (DOT)","Federal","CE",6,"https://www.transportation.gov","Sustainable materials; resource recovery","FHWA + University Transportation Centers."),
  F("U.S. Environmental Protection Agency (EPA)","Federal","Both",44,"https://www.epa.gov","Waste management; LCA; resource recovery; EPR","GROUNDED: EPA/600 SMM report. STAR/ORD/SMM merged."),
  F("U.S. Geological Survey (USGS)","Federal","CE",4,"https://www.usgs.gov","Resource recovery; industrial ecology","Critical-minerals / material-flow data."),
- F("University of Michigan – Graham Sustainability Institute","University","Sustainability",5,"https://graham.umich.edu","Urban planning; sustainability; industrial ecology","Catalyst/seed grants."),
- F("University of Pittsburgh – Mascaro Center for Sustainable Innovation","University","CE",4,"https://www.engineering.pitt.edu/mcsi/","Circular economy; urban planning; LCA","Tied to NSF Convergence work."),
+ F("University of Michigan â€“ Graham Sustainability Institute","University","Sustainability",5,"https://graham.umich.edu","Urban planning; sustainability; industrial ecology","Catalyst/seed grants."),
+ F("University of Pittsburgh â€“ Mascaro Center for Sustainable Innovation","University","CE",4,"https://www.engineering.pitt.edu/mcsi/","Circular economy; urban planning; LCA","Tied to NSF Convergence work."),
  F("V. Kann Rasmussen Foundation","Foundation","Sustainability",3,"https://vkrf.org","Sustainability; sustainable development","URL verified. Niche environmental funder."),
  F("Walmart Foundation","Corporate","CE",3,"https://walmart.org","Closed-loop supply chain; food systems","Corporate foundation."),
  F("Walton Family Foundation","Foundation","Sustainability",5,"https://www.waltonfamilyfoundation.org","Food systems; sustainability","Oceans/rivers/agriculture."),
@@ -367,7 +367,7 @@ async function loadData(){
       subfields:(r[7]||"").trim(), note:(r[8]||"").trim()
     })).filter(f=>f.name && TYPES[f.type]);
     if(parsed.length>=50){ DATA=parsed; console.info("Loaded "+parsed.length+" funders from CSV."); }
-  }catch(e){ console.info("Using embedded data (CSV fetch unavailable — expected offline / in-sandbox)."); }
+  }catch(e){ console.info("Using embedded data (CSV fetch unavailable â€” expected offline / in-sandbox)."); }
 }
 
 /* ---- helpers -------------------------------------------------------------- */
@@ -390,10 +390,10 @@ function renderKPIs(){
   const top=[...DATA].sort((a,b)=>b.papers-a.papers)[0];
   const items=[
     {v:total,l:"Unique funding organizations",h:"deduplicated by parent org"},
-    {v:Object.keys(TYPES).length,l:"Funder types represented",h:"federal → university-internal"},
+    {v:Object.keys(TYPES).length,l:"Funder types represented",h:"federal â†’ university-internal"},
     {v:nonFed+"%",l:"Non-federal share",h:"foundations, corporate, state, NGO, university"},
     {v:top.name.split("(")[0].trim().replace("National Science Foundation","NSF"),
-      l:"Most-cited funder (indicative)",h:top.papers+" papers · relative estimate"},
+      l:"Most-cited funder (indicative)",h:top.papers+" papers Â· relative estimate"},
   ];
   $("#kpis").innerHTML=items.map(i=>`<div class="kpi"><div class="v">${i.v}</div>
     <div class="l">${i.l}</div><div class="h">${i.h}</div></div>`).join("");
@@ -461,13 +461,13 @@ function renderTable(){
       <td><span class="topic"><i class="dot" style="background:${pc}"></i>${labels[f.topic]}</span></td>
       <td class="num">${f.papers}</td>
       <td>${f.subfields}</td>
-      <td><a href="${f.url}" target="_blank" rel="noopener">${host} ↗</a></td>
+      <td><a href="${f.url}" target="_blank" rel="noopener">${host} â†—</a></td>
     </tr>`;
   }).join("");
   $("#tableCount").textContent=`${rows.length} of ${DATA.length} funders`;
   document.querySelectorAll("thead th[data-k]").forEach(th=>{
     const a=th.querySelector(".arrow");
-    a.textContent = th.dataset.k===sortK ? (sortDir===-1?"▼":"▲") : "";
+    a.textContent = th.dataset.k===sortK ? (sortDir===-1?"â–¼":"â–²") : "";
   });
 }
 function initTable(){
@@ -499,5 +499,7 @@ matchMedia("(prefers-color-scheme:dark)").addEventListener("change",renderAll);
 
 loadData().then(()=>{ initTable(); renderAll(); });
 </script>
+
 </body>
 </html>
+
